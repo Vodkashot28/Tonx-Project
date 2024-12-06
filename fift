@@ -1,0 +1,14 @@
+; Set control parameter CP0 to 0
+SETCP0
+
+; Main function
+recv_internal:
+  s0 s1 XCHG        ; Exchange the top two stack values
+  CTOS              ; Convert the top of stack to storage
+  4 LDU             ; Load 4 units from memory
+  s0 s1 XCHG        ; Exchange the top two stack values
+  1 PUSHINT         ; Push integer 1 onto the stack
+  AND               ; Perform bitwise AND on the top two stack values
+  NEGATE            ; Negate the top of stack value
+  s0 s1 XCHG        ; Exchange the top two stack values
+  LDMSGADDR         ; Load message address from the stack
